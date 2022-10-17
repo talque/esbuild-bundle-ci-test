@@ -1,8 +1,13 @@
 {
     "name": "@talque/webpack-bundle-ci-test",
-    "version": "1.0.0",
+    "version": "1.0.1",
     "description": "Programmatic tests that webpack split code into chunks",
     "main": "build/src/cli.js",
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/talque/webpack-bundle-ci-test.git"
+    },
+    "homepage": "https://github.com/talque/webpack-bundle-ci-test",
     "scripts": {
         "build": "tsc",
         "test": "tsc && node ./build/test/test-all.js",
