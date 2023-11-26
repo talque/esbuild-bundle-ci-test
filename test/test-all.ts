@@ -17,7 +17,7 @@ function run(
     const cmd = [
         '../../build/src/cli.js',
         command,
-        'report.json',
+        'meta.json',
         ...files,
     ];
     const result = spawnSync('node', cmd, { cwd: './test/fixtures', stdio: 'pipe' });
@@ -53,13 +53,13 @@ function expect(
 expect(
     'is-lazy',
     [
-        './projects/feature-libs/map-lib/src/lib/controls/map-controls.event-model.ts',
+        './projects/feature-libs/map-lib/src/lib/models/map-drawer.event-model.ts',
     ],
     {
         status: 0,
         stderr: [],
         stdout: [
-            'There are 1 source file(s) in the chunk projects_feature-libs_map-lib_src_public-api_routing_ts.js',
+            'There are 1 source file(s) in the chunk public-api-ZKJ65KCM.js',
             'All source files are lazy loaded',
         ],
     }
@@ -78,7 +78,7 @@ expect(
         status: 0,
         stderr: [],
         stdout: [
-            'Did not find 1 source file(s) in the webpack output',
+            'Did not find 1 source file(s) in the esbuild output',
             'All source files are lazy loaded'
         ],
     }
@@ -101,7 +101,35 @@ expect(
             '3 were not lazily loaded',
         ],
         stdout: [
+            'There are 3 source file(s) in the chunk chunk-4EZMD2T2.js',
+            'There are 3 source file(s) in the chunk chunk-BZYCRPAA.js',
+            'There are 3 source file(s) in the chunk chunk-JBGXOPPI.js',
+            'There are 3 source file(s) in the chunk chunk-JNTRXSKF.js',
+            'There are 3 source file(s) in the chunk chunk-K5RSHVFW.js',
+            'There are 3 source file(s) in the chunk chunk-KTHJP424.js',
+            'There are 3 source file(s) in the chunk chunk-KTTJKA3D.js',
+            'There are 3 source file(s) in the chunk chunk-SKK2LKM6.js',
+            'There are 3 source file(s) in the chunk chunk-WKFF5COW.js',
             'There are 3 source file(s) in the chunk main.js',
+            'There are 3 source file(s) in the chunk public-api-32WYZAPA.js',
+            'There are 3 source file(s) in the chunk public-api-5DAHQFMT.js',
+            'There are 3 source file(s) in the chunk public-api-7IANSYND.js',
+            'There are 3 source file(s) in the chunk public-api-A6JM6E27.js',
+            'There are 3 source file(s) in the chunk public-api-ATYFDBJJ.js',
+            'There are 3 source file(s) in the chunk public-api-CW4HCNEQ.js',
+            'There are 3 source file(s) in the chunk public-api-EZRST4L4.js',
+            'There are 3 source file(s) in the chunk public-api-GYNCO244.js',
+            'There are 3 source file(s) in the chunk public-api-JVFWQ7B2.js',
+            'There are 3 source file(s) in the chunk public-api-QL464U4Q.js',
+            'There are 3 source file(s) in the chunk public-api-QLHR3M6C.js',
+            'There are 3 source file(s) in the chunk public-api-SEDZGOLA.js',
+            'There are 3 source file(s) in the chunk public-api-TQWGE2I4.js',
+            'There are 3 source file(s) in the chunk public-api-UHKTC3TO.js',
+            'There are 3 source file(s) in the chunk public-api-XDFYXEHR.js',
+            'There are 3 source file(s) in the chunk public-api-XITMG3TI.js',
+            'There are 3 source file(s) in the chunk public-api-ZKJ65KCM.js',
+            'There are 3 source file(s) in the chunk www.module.ajs-SV7JWNA2.js',
+            'There are 3 source file(s) in the chunk www.module.extra.ajs-HEUUWU5K.js',
             'The following files were not lazily loaded:',
             '  * projects/chat-lib/src/lib/blurb/blurb-collection/blurb-collection.component.ts',
             '  * projects/chat-lib/src/lib/blurb/blurb-collection/blurb-collection.view-model.ts',
@@ -125,14 +153,41 @@ expect(
             '2 were not lazily loaded',
         ],
         stdout: [
+            'There are 2 source file(s) in the chunk chunk-4EZMD2T2.js',
+            'There are 2 source file(s) in the chunk chunk-BZYCRPAA.js',
+            'There are 2 source file(s) in the chunk chunk-JBGXOPPI.js',
+            'There are 2 source file(s) in the chunk chunk-JNTRXSKF.js',
+            'There are 2 source file(s) in the chunk chunk-K5RSHVFW.js',
+            'There are 2 source file(s) in the chunk chunk-KTHJP424.js',
+            'There are 2 source file(s) in the chunk chunk-KTTJKA3D.js',
+            'There are 2 source file(s) in the chunk chunk-SKK2LKM6.js',
+            'There are 2 source file(s) in the chunk chunk-WKFF5COW.js',
             'There are 2 source file(s) in the chunk main.js',
+            'There are 2 source file(s) in the chunk public-api-32WYZAPA.js',
+            'There are 2 source file(s) in the chunk public-api-5DAHQFMT.js',
+            'There are 2 source file(s) in the chunk public-api-7IANSYND.js',
+            'There are 2 source file(s) in the chunk public-api-A6JM6E27.js',
+            'There are 2 source file(s) in the chunk public-api-ATYFDBJJ.js',
+            'There are 2 source file(s) in the chunk public-api-CW4HCNEQ.js',
+            'There are 2 source file(s) in the chunk public-api-EZRST4L4.js',
+            'There are 2 source file(s) in the chunk public-api-GYNCO244.js',
+            'There are 2 source file(s) in the chunk public-api-JVFWQ7B2.js',
+            'There are 2 source file(s) in the chunk public-api-QL464U4Q.js',
+            'There are 2 source file(s) in the chunk public-api-QLHR3M6C.js',
+            'There are 2 source file(s) in the chunk public-api-SEDZGOLA.js',
+            'There are 2 source file(s) in the chunk public-api-TQWGE2I4.js',
+            'There are 2 source file(s) in the chunk public-api-UHKTC3TO.js',
+            'There are 2 source file(s) in the chunk public-api-XDFYXEHR.js',
+            'There are 2 source file(s) in the chunk public-api-XITMG3TI.js',
+            'There are 2 source file(s) in the chunk public-api-ZKJ65KCM.js',
+            'There are 2 source file(s) in the chunk www.module.ajs-SV7JWNA2.js',
+            'There are 2 source file(s) in the chunk www.module.extra.ajs-HEUUWU5K.js',
             'The following files were not lazily loaded:',
             '  * projects/chat-lib/src/lib/blurb/blurb-collection/blurb-collection.component.ts',
             '  * projects/chat-lib/src/lib/blurb/blurb-collection/blurb-collection.view-model.ts',
         ],
     }
 );
-
 
 
 /**
@@ -142,15 +197,68 @@ expect(
     'distinct-chunks',
     [
         'projects/feature-libs/map-lib/src/lib/map-detail-view/map-detail-view.component.ts',
-        'projects/chat-lib/src/lib/blurb/blurb-collection/blurb-collection.component.ts',
+        'src/main.ts',
     ],
     {
         status: 0,
         stderr: [],
         stdout: [
             'There are 1 source file(s) in the chunk main.js',
-            'There are 1 source file(s) in the chunk projects_feature-libs_map-lib_src_public-api_routing_ts.js',
+            'There are 1 source file(s) in the chunk public-api-ZKJ65KCM.js',
             'All source files are in distinct chunks'
+        ],
+    }
+);
+
+
+/**
+ * Test distinct-chunks fail due to common parent chunk
+ */
+expect(
+    'distinct-chunks',
+    [
+        'projects/feature-libs/map-lib/src/lib/map-detail-view/map-detail-view.component.ts',
+        'projects/chat-lib/src/lib/blurb/blurb-collection/blurb-collection.component.ts',
+    ],
+    {
+        status: 1,
+        stderr: [
+            '1 chunks were not split'
+        ],
+        stdout: [
+            'There are 1 source file(s) in the chunk chunk-4EZMD2T2.js',
+            'There are 1 source file(s) in the chunk chunk-BZYCRPAA.js',
+            'There are 1 source file(s) in the chunk chunk-JBGXOPPI.js',
+            'There are 1 source file(s) in the chunk chunk-JNTRXSKF.js',
+            'There are 1 source file(s) in the chunk chunk-K5RSHVFW.js',
+            'There are 1 source file(s) in the chunk chunk-KTHJP424.js',
+            'There are 1 source file(s) in the chunk chunk-KTTJKA3D.js',
+            'There are 1 source file(s) in the chunk chunk-SKK2LKM6.js',
+            'There are 1 source file(s) in the chunk chunk-WKFF5COW.js',
+            'There are 1 source file(s) in the chunk main.js',
+            'There are 1 source file(s) in the chunk public-api-32WYZAPA.js',
+            'There are 1 source file(s) in the chunk public-api-5DAHQFMT.js',
+            'There are 1 source file(s) in the chunk public-api-7IANSYND.js',
+            'There are 1 source file(s) in the chunk public-api-A6JM6E27.js',
+            'There are 1 source file(s) in the chunk public-api-ATYFDBJJ.js',
+            'There are 1 source file(s) in the chunk public-api-CW4HCNEQ.js',
+            'There are 1 source file(s) in the chunk public-api-EZRST4L4.js',
+            'There are 1 source file(s) in the chunk public-api-GYNCO244.js',
+            'There are 1 source file(s) in the chunk public-api-JVFWQ7B2.js',
+            'There are 1 source file(s) in the chunk public-api-QL464U4Q.js',
+            'There are 1 source file(s) in the chunk public-api-QLHR3M6C.js',
+            'There are 1 source file(s) in the chunk public-api-SEDZGOLA.js',
+            'There are 1 source file(s) in the chunk public-api-TQWGE2I4.js',
+            'There are 1 source file(s) in the chunk public-api-UHKTC3TO.js',
+            'There are 1 source file(s) in the chunk public-api-XDFYXEHR.js',
+            'There are 1 source file(s) in the chunk public-api-XITMG3TI.js',
+            'There are 2 source file(s) in the chunk public-api-ZKJ65KCM.js',
+            'There are 1 source file(s) in the chunk www.module.ajs-SV7JWNA2.js',
+            'There are 1 source file(s) in the chunk www.module.extra.ajs-HEUUWU5K.js',
+            'The following chunks bundled multiple files:',
+            '  * chunk: public-api-ZKJ65KCM.js',
+            '      - projects/feature-libs/map-lib/src/lib/map-detail-view/map-detail-view.component.ts',
+            '      - projects/chat-lib/src/lib/blurb/blurb-collection/blurb-collection.component.ts'
         ],
     }
 );
@@ -163,7 +271,6 @@ expect(
     'distinct-chunks',
     [
         'projects/feature-libs/map-lib/src/lib/map-detail-view/map-detail-view.component.ts',
-        'projects/feature-libs/map-lib/src/lib/map-detail-view/map-detail-view.store.ts',
         'projects/feature-libs/map-lib/src/lib/map-detail-view/map-detail.view-model.ts',
     ],
     {
@@ -172,11 +279,10 @@ expect(
             '1 chunks were not split'
         ],
         stdout: [
-            'There are 3 source file(s) in the chunk projects_feature-libs_map-lib_src_public-api_routing_ts.js',
+            'There are 2 source file(s) in the chunk public-api-ZKJ65KCM.js',
             'The following chunks bundled multiple files:',
-            '  * chunk: projects_feature-libs_map-lib_src_public-api_routing_ts.js',
+            '  * chunk: public-api-ZKJ65KCM.js',
             '      - projects/feature-libs/map-lib/src/lib/map-detail-view/map-detail-view.component.ts',
-            '      - projects/feature-libs/map-lib/src/lib/map-detail-view/map-detail-view.store.ts',
             '      - projects/feature-libs/map-lib/src/lib/map-detail-view/map-detail.view-model.ts'
         ],
     }

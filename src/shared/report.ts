@@ -1,23 +1,17 @@
 import { readFileSync } from 'fs';
 import { pathNormalization } from './path-normalization';
-
-
-interface ReportGroupJson {
-    readonly label: string;
-    readonly groups?: readonly ReportGroupJson[];
-    readonly path?: string;
-}
+import { Metafile } from './metafile.interface';
 
 
 export class Report {
 
-    private readonly json: readonly ReportGroupJson[];
+    private readonly json: Metafile;
     
     constructor(
-        private readonly reportFileName: string
+        reportFileName: string
     ) {
         const buf = readFileSync(reportFileName);
-        this.json = JSON.parse(buf.toString());
+        this.json = JSON.parse(buf.toString()) as Metafile;
     }
 
     /**
@@ -25,22 +19,59 @@ export class Report {
      */
     chunk(inputPath: string): string | undefined {
         const path = pathNormalization(inputPath);
-        return this.recursiveSearch(path, this.json);
+        return this.searchChunk(path);
     }
 
     /**
      * Return the top-level label (chunk filename) that contains the path
      */ 
-    private recursiveSearch(path: string, groups: readonly ReportGroupJson[]): string | undefined {
-        for (const group of groups) {
-            if (group.path) {
-                if (pathNormalization(group.path) === path)
-                    return group.label;
+    private searchChunk(path: string): string | undefined {
+        // console.log('searchChunk', path, Object.keys(this.json));
+        for (const output in this.json.outputs) {
+            // console.log('output', output);
+            const inputs = this.json.outputs[output].inputs
+            for (const input in inputs) {
+                // console.log('input', input);
+                if (pathNormalization(input) === path)
+                    return output;
             }
-            if (group.groups) {
-                const result = this.recursiveSearch(path, group.groups);
-                if (result)
-                    return group.label;
+        }
+        return undefined;
+    }
+
+    staticImporters(chunk: string): ReadonlySet<string> {
+        const result = new Set<string>();
+        const todo = new Set<string>();
+        todo.add(chunk);
+        while (todo.size > 0) {
+            const c = todo.values().next().value;
+            todo.delete(c);
+            result.add(c);
+            this.searchStaticImporters(c, result, todo);
+        }
+        return result;
+    } 
+
+    /**
+     * Return the top-level label (chunk filename) that contains the path
+     */ 
+    private searchStaticImporters(
+        chunk: string,
+        result: Set<string>,
+        todo: Set<string>,
+    ): void {
+        // console.log('searchChunk', path, Object.keys(this.json));
+        for (const output in this.json.outputs) {
+            // console.log('output', output);
+            const imports = this.json.outputs[output].imports
+            for (const { path, kind } of imports) {
+                if (kind !== 'import-statement')
+                    continue;
+                if (path !== chunk)
+                    continue;
+                if (result.has(output))
+                    continue;
+                todo.add(output);
             }
         }
     }

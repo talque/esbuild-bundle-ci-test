@@ -4,13 +4,13 @@ exports.handler = exports.builder = exports.desc = exports.command = void 0;
 const chunk_stats_1 = require("../shared/chunk-stats");
 const expand_globs_1 = require("../shared/expand-globs");
 const report_1 = require("../shared/report");
-exports.command = 'is-lazy <reportJson> [files...]';
+exports.command = 'is-lazy <metafile> [files...]';
 exports.desc = 'Test that the code from the given files is lazily loaded';
 exports.builder = ((yargs) => yargs
-    .positional('reportJson', { type: 'string', demandOption: true })
+    .positional('metafile', { type: 'string', demandOption: true })
     .positional('files', { type: 'string', demandOption: true }));
 const handler = (argv) => {
-    const report = new report_1.Report(argv.reportJson);
+    const report = new report_1.Report(argv.metafile);
     const stats = chunk_stats_1.ChunkStats.fromReport(report, (0, expand_globs_1.expandGlobs)(argv.files));
     console.log(stats.summary);
     const files = stats.filesInMain;

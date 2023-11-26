@@ -5,23 +5,23 @@ import { Report } from '../shared/report';
 
 
 type Options = {
-    readonly reportJson: string;
+    readonly metafile: string;
     readonly files: readonly string[];
 };
 
-export const command: string = 'is-lazy <reportJson> [files...]';
+export const command: string = 'is-lazy <metafile> [files...]';
 export const desc: string = 'Test that the code from the given files is lazily loaded';
 
 
 export const builder: CommandBuilder<Options, Options> = (
     (yargs: any) => yargs
-        .positional('reportJson', { type: 'string', demandOption: true })
+        .positional('metafile', { type: 'string', demandOption: true })
         .positional('files', { type: 'string', demandOption: true })
 ) as CommandBuilder<Options, Options>;
 
 
 export const handler = (argv: Arguments<Options>): void => {
-    const report = new Report(argv.reportJson);
+    const report = new Report(argv.metafile);
     const stats = ChunkStats.fromReport(report, expandGlobs(argv.files));
     console.log(stats.summary);
     const files = stats.filesInMain;

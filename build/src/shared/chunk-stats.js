@@ -11,17 +11,18 @@ class ChunkStats {
         const stats = new Map();
         for (const file of files) {
             const chunk = report.chunk(file);
-            if (chunk) {
-                const current = stats.get(chunk);
+            if (!chunk) {
+                missing.push(file);
+                continue;
+            }
+            for (const parent of report.staticImporters(chunk)) {
+                const current = stats.get(parent);
                 if (current) {
                     current.push(file);
                 }
                 else {
-                    stats.set(chunk, [file]);
+                    stats.set(parent, [file]);
                 }
-            }
-            else {
-                missing.push(file);
             }
         }
         return new ChunkStats(stats, missing);
@@ -41,7 +42,7 @@ class ChunkStats {
         for (const [chunk, files] of this.orderedIter())
             lines.push(`There are ${files.length} source file(s) in the chunk ${chunk}`);
         if (this.missing.length > 0)
-            lines.push(`Did not find ${this.missing.length} source file(s) in the webpack output`);
+            lines.push(`Did not find ${this.missing.length} source file(s) in the esbuild output`);
         return lines.join('\n');
     }
     /**

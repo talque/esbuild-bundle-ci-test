@@ -34,7 +34,7 @@ const distinctChunks = __importStar(require("./commands/distinct-chunks"));
 const distinct_chunks_1 = require("./commands/distinct-chunks");
 (0, yargs_1.default)((0, helpers_1.hideBin)(process.argv))
     .command(isLazy.command, isLazy.desc, isLazy.builder, isLazy.handler)
-    .command('distinct-chunks <reportJson> [files...]', distinctChunks.desc, distinct_chunks_1.builder, distinctChunks.handler)
+    .command('distinct-chunks <metafile> [files...]', distinctChunks.desc, distinct_chunks_1.builder, distinctChunks.handler)
     // .command([isLazy, distinctChunks] as any)
     .demandCommand()
     .strict()

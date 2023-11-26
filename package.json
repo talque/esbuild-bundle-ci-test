@@ -1,16 +1,16 @@
 {
-    "name": "@talque/webpack-bundle-ci-test",
+    "name": "@talque/esbuild-bundle-ci-test",
     "version": "1.0.1",
-    "description": "Programmatic tests that webpack split code into chunks",
+    "description": "Programmatic tests that esbuild split code into chunks",
     "main": "build/src/cli.js",
     "repository": {
         "type": "git",
-        "url": "https://github.com/talque/webpack-bundle-ci-test.git"
+        "url": "https://github.com/talque/esbuild-bundle-ci-test.git"
     },
-    "homepage": "https://github.com/talque/webpack-bundle-ci-test",
+    "homepage": "https://github.com/talque/esbuild-bundle-ci-test",
     "scripts": {
         "build": "tsc",
-        "test": "tsc && node ./build/test/test-all.js",
+        "test": "tsc && node ./build/test/test-report.js && node ./build/test/test-all.js",
         "publish": "tsc && npm publish --access public"
     },
     "bin": "build/src/cli.js",
